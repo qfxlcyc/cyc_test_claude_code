@@ -45,3 +45,32 @@ try:
     result = 10 / 0
 except ZeroDivisionError:
     print("错误: 除数不能为零")
+
+# 类
+class Animal:
+    def __init__(self, name, sound):
+        self.name = name
+        self.sound = sound
+
+    def speak(self):
+        return f"{self.name} 说: {self.sound}"
+
+    def __str__(self):
+        return f"Animal({self.name})"
+
+
+class Dog(Animal):
+    def __init__(self, name):
+        super().__init__(name, "汪汪")
+
+    def fetch(self, item):
+        return f"{self.name} 捡回了 {item}!"
+
+
+dog = Dog("旺财")
+print(dog.speak())
+print(dog.fetch("球"))
+print(str(dog))
+
+cat = Animal("咪咪", "喵喵")
+print(cat.speak())
