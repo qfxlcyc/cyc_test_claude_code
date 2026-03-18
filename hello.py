@@ -55,6 +55,9 @@ class Animal:
     def speak(self):
         return f"{self.name} 说: {self.sound}"
 
+    def describe(self):
+        return f"{self.name} 是一只动物"
+
     def __str__(self):
         return f"Animal({self.name})"
 
@@ -63,14 +66,35 @@ class Dog(Animal):
     def __init__(self, name):
         super().__init__(name, "汪汪")
 
+    def speak(self):
+        return super().speak() + "！"
+
     def fetch(self, item):
         return f"{self.name} 捡回了 {item}!"
 
 
-dog = Dog("旺财")
-print(dog.speak())
-print(dog.fetch("球"))
-print(str(dog))
+class Cat(Animal):
+    def __init__(self, name):
+        super().__init__(name, "喵喵")
 
-cat = Animal("咪咪", "喵喵")
-print(cat.speak())
+    def speak(self):
+        return super().speak() + "~"
+
+    def purr(self):
+        return f"{self.name} 发出呼噜声..."
+
+
+dog = Dog("旺财")
+cat = Cat("咪咪")
+
+# 体现继承：调用父类方法
+print(dog.describe())
+print(cat.describe())
+
+# 体现重写 + 多态：同一接口不同行为
+for animal in [dog, cat]:
+    print(animal.speak())
+
+# 各自特有方法
+print(dog.fetch("球"))
+print(cat.purr())
